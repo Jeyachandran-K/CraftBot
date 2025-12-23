@@ -10,10 +10,13 @@ public class Player : MonoBehaviour
     
     [SerializeField]private float playerMovementSpeed;
     [SerializeField]private float playerRotateSpeed;
+    [SerializeField]private CraftBot craftBot;
+    [SerializeField]private BasicCube basicCube;
 
     private InteractButtonUI interactButtonUI;
 
     public event EventHandler OnEKeyPressed;
+    public event EventHandler OnHittingCubes;
     private void Awake()
     {
         Instance = this;
@@ -53,19 +56,23 @@ public class Player : MonoBehaviour
 
     private float playerHeight = 2f;
     private float playerRadius = 0.5f;
-    private float maxRayDistance = 10f;
+    private float maxRayDistance = 5f;
     
     private void HandleInteraction()
     {
         if (Physics.CapsuleCast(transform.position,transform.position+transform.up*playerHeight,playerRadius,transform.forward,out RaycastHit raycastHit,maxRayDistance))
         {
-            Debug.Log("We Hit :" + raycastHit.collider);
-            Debug.Log(!InteractButtonUI.Instance.GetHasClicked());
-            if ( !InteractButtonUI.Instance.GetHasClicked())
+            
+            if ( raycastHit.collider.GetComponentInParent<CraftBot>() == craftBot)
             {
                 interactButtonUI.Show();
             }
-            
+            Debug.Log(basicCube);
+            Debug.Log(raycastHit.collider.GetComponentInParent<BasicCube>());
+            if ( raycastHit.collider.GetComponentInParent<BasicCube>() == basicCube) 
+            {
+                OnHittingCubes?.Invoke(this, EventArgs.Empty);
+            }
         }
         else
         {

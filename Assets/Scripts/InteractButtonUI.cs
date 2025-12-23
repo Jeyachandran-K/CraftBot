@@ -8,8 +8,6 @@ public class InteractButtonUI : MonoBehaviour
 
     [SerializeField] private Button interactButton;
 
-    private bool hasClicked;
-
     public event EventHandler OnClickingInteract;
     private void Awake()
     {
@@ -34,9 +32,5 @@ public class InteractButtonUI : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
-    }
-    public bool GetHasClicked()
-    {
-        return hasClicked;
     }
 }
