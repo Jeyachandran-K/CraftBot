@@ -20,7 +20,12 @@ public class InteractButtonUI : MonoBehaviour
     }
     private void Start()
     {
+        Player.Instance.OnEKeyPressed += Player_OnEKeyPressed;
         Hide();
+    }
+    private void Player_OnEKeyPressed(object sender, System.EventArgs e)
+    {
+        interactButton.onClick.Invoke();
     }
     public void Show()
     {

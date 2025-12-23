@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance {  get; private set; }
+
     private Rigidbody playerRigidbody;
     
     [SerializeField]private float playerMovementSpeed;
@@ -10,9 +13,11 @@ public class Player : MonoBehaviour
 
     private InteractButtonUI interactButtonUI;
 
-
+    public event EventHandler OnEKeyPressed;
     private void Awake()
     {
+        Instance = this;
+
         playerRigidbody = GetComponent<Rigidbody>();
         interactButtonUI = GetComponentInChildren<InteractButtonUI>();
     }
@@ -38,6 +43,10 @@ public class Player : MonoBehaviour
         if (Keyboard.current.aKey.isPressed)
         {
             playerRigidbody.AddTorque(-playerRotateSpeed * Vector3.up);
+        }
+        if (Keyboard.current.eKey.isPressed)
+        {
+            OnEKeyPressed?.Invoke(this, EventArgs.Empty);
         }
 
     }
