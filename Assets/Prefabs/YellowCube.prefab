@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2995180309972976733, guid: 7b0a2096488807544ad3fe23131fc28c, type: 3}
+      propertyPath: m_Name
+      value: YellowCubeVisuals
+      objectReference: {fileID: 0}
     - target: {fileID: 3678018961462365340, guid: 7b0a2096488807544ad3fe23131fc28c, type: 3}
       propertyPath: m_Name
       value: YellowCube

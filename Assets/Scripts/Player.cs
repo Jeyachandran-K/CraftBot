@@ -8,9 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField]private float playerMovementSpeed;
     [SerializeField]private float playerRotateSpeed;
 
+    private InteractButtonUI interactButtonUI;
+
+
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        interactButtonUI = GetComponentInChildren<InteractButtonUI>();
     }
     private void FixedUpdate()
     {
@@ -41,11 +45,22 @@ public class Player : MonoBehaviour
     private float playerHeight = 2f;
     private float playerRadius = 0.5f;
     private float maxRayDistance = 10f;
+    
     private void HandleInteraction()
     {
-        if (Physics.CapsuleCast(transform.position,transform.position+transform.up*playerHeight,playerRadius,transform.forward,maxRayDistance))
+        if (Physics.CapsuleCast(transform.position,transform.position+transform.up*playerHeight,playerRadius,transform.forward,out RaycastHit raycastHit,maxRayDistance))
         {
-            Debug.Log("We Hit Something");
+            Debug.Log("We Hit :" + raycastHit.collider);
+            Debug.Log(!InteractButtonUI.Instance.GetHasClicked());
+            if ( !InteractButtonUI.Instance.GetHasClicked())
+            {
+                interactButtonUI.Show();
+            }
+            
+        }
+        else
+        {
+            interactButtonUI.Hide();
         }
     }
 
