@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         HandleMovement();
+        HandleInteraction();
     }
     private void HandleMovement()
     {
@@ -36,4 +37,16 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    private float playerHeight = 2f;
+    private float playerRadius = 0.5f;
+    private float maxRayDistance = 10f;
+    private void HandleInteraction()
+    {
+        if (Physics.CapsuleCast(transform.position,transform.position+transform.up*playerHeight,playerRadius,transform.forward,maxRayDistance))
+        {
+            Debug.Log("We Hit Something");
+        }
+    }
+
 }
