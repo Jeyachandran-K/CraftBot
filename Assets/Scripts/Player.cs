@@ -1,11 +1,10 @@
 using System;
-using System.Buffers.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-     public static Player Instance {  get; private set; }
+    public static Player Instance {  get; private set; }
 
     private Rigidbody playerRigidbody;
     
@@ -22,6 +21,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         HandleMovement();
+        HandleInteraction();
     }
     private void HandleMovement()
     {
@@ -43,12 +43,19 @@ public class Player : MonoBehaviour
         }
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private float playerheight = 2f;
+    private float playerRadius = 0.5f;
+    private float maxRayDistance = 2f;
+
+    private void HandleInteraction()
     {
-        if (collision.gameObject.TryGetComponent(out BasicCube basicCube))
+        if(Physics.CapsuleCast(transform.position,transform.position+transform.up*playerheight,playerRadius,transform.forward,out RaycastHit raycastHit,maxRayDistance))
         {
-            OnCubesHit?.Invoke(this, EventArgs.Empty);
-            basicCube.DestroySelf();
+            if(raycastHit.collider.gameObject.TryGetComponent(out BasicCube basicCube))
+            {
+                OnCubesHit?.Invoke(this, EventArgs.Empty);
+                basicCube.DestroySelf();
+            }
         }
     }
 }
