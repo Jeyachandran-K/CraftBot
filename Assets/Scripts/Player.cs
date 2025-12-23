@@ -1,15 +1,22 @@
+using System;
+using System.Buffers.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+     public static Player Instance {  get; private set; }
+
     private Rigidbody playerRigidbody;
     
     [SerializeField]private float playerMovementSpeed;
     [SerializeField]private float playerRotateSpeed;
 
+    public event EventHandler OnCubesHit;
+
     private void Awake()
     {
+        Instance = this;
         playerRigidbody = GetComponent<Rigidbody>();
     }
     private void FixedUpdate()
@@ -35,5 +42,13 @@ public class Player : MonoBehaviour
             playerRigidbody.AddTorque(-playerRotateSpeed * Vector3.up);
         }
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out BasicCube basicCube))
+        {
+            OnCubesHit?.Invoke(this, EventArgs.Empty);
+            basicCube.DestroySelf();
+        }
     }
 }
