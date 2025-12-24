@@ -3,27 +3,47 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    [SerializeField]private int typesOfCubes = 2;
     public enum Items
     {
         RedCube,
         GreenCube
     }
 
-    private int cubesCollected;
+    [SerializeField]private BasicCube[] cubeList;
+
+    private int redCubesCollected;
+    private int greenCubesCollected;
+
+    private void Awake()
+    {
+        cubeList = new BasicCube[typesOfCubes];
+    }
 
     private void Start()
     {
-        Player.Instance.OnCubesHit += Player_OnCubesHit;
+        Player.Instance.OnRedCubesHit += Player_OnRedCubesHit;
+        Player.Instance.OnGreenCubesHit += Player_OnGreenCubesHit;
     }
 
-    private void Player_OnCubesHit(object sender, System.EventArgs e)
+    private void Player_OnGreenCubesHit(object sender, System.EventArgs e)
     {
-        AddCubes();
-        Debug.Log("Number of cubes Collected :"+cubesCollected);
+        AddGreenCubes();
+        Debug.Log("Numebr of Green cubes Collected : " + greenCubesCollected);
     }
 
-    private void AddCubes()
+    private void Player_OnRedCubesHit(object sender, System.EventArgs e)
     {
-        cubesCollected++;
+        AddRedCubes();
+        Debug.Log("Number of  Red cubes Collected :"+redCubesCollected);
+    }
+
+    private void AddRedCubes()
+    {
+        redCubesCollected++;
+    }
+    private void AddGreenCubes()
+    {
+        greenCubesCollected++;
     }
 }
