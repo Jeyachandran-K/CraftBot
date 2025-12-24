@@ -11,8 +11,12 @@ public class Player : MonoBehaviour
     [SerializeField]private float playerMovementSpeed;
     [SerializeField]private float playerRotateSpeed;
 
-    public event EventHandler OnGreenCubesHit;
-    public event EventHandler OnRedCubesHit;
+    public event EventHandler<OnCubeHitEventArgs> OnCubeHit;
+
+    public class OnCubeHitEventArgs : EventArgs
+    {
+        public CubeSO cubeSO;
+    }
 
     private void Awake()
     {
@@ -52,15 +56,13 @@ public class Player : MonoBehaviour
     {
         if(Physics.CapsuleCast(transform.position,transform.position+transform.up*playerheight,playerRadius,transform.forward,out RaycastHit raycastHit,maxRayDistance))
         {
-            if(raycastHit.collider.gameObject.TryGetComponent(out RedCube redCube))
+            if(raycastHit.collider.TryGetComponent(out BasicCube basicCube))
             {
-                OnRedCubesHit?.Invoke(this, EventArgs.Empty);
-                redCube.DestroySelf();
-            }
-            if(raycastHit.collider.TryGetComponent(out GreenCube greenCube))
-            {
-                OnGreenCubesHit?.Invoke(this,EventArgs.Empty);  
-                greenCube.DestroySelf();
+                OnCubeHit?.Invoke(this, new OnCubeHitEventArgs
+                {
+                    cubeSO=basicCube.GetCubeSO(),
+                });
+                basicCube.DestroySelf();
             }
         }
     }

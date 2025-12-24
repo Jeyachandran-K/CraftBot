@@ -1217,9 +1217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
   typesOfCubes: 2
-  cubeList:
-  - {fileID: 683077260827962544, guid: efd25fbe1766972478fb29cbcbfe0640, type: 3}
-  - {fileID: 500823578935216384, guid: f218c1dd012d48c46a5a868d5c49a1cf, type: 3}
+  cubeSOArray:
+  - {fileID: 11400000, guid: 39d414e7896bc384c83e06617417c22c, type: 2}
+  - {fileID: 11400000, guid: ee3c57dfe0cd45348b54eb2a873b9f85, type: 2}
 --- !u!4 &1079735634
 Transform:
   m_ObjectHideFlags: 0

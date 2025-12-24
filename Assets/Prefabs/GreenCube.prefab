@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenCube
       objectReference: {fileID: 0}
+    - target: {fileID: 4901720716982449419, guid: 7b0a2096488807544ad3fe23131fc28c, type: 3}
+      propertyPath: cubeSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 39d414e7896bc384c83e06617417c22c, type: 2}
     - target: {fileID: 7382832904545010188, guid: 7b0a2096488807544ad3fe23131fc28c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -85,3 +89,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73c463d2cf38324bbdbd96f0e6d224e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GreenCube
+  cubeSO: {fileID: 0}

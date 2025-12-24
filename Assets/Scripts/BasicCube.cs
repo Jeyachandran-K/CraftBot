@@ -2,18 +2,15 @@ using UnityEngine;
 
 public class BasicCube : MonoBehaviour
 {
-    private string color;
+    [SerializeField] private CubeSO cubeSO;
 
     public void DestroySelf()
     {
         Destroy(gameObject);
     }
-    public void SetColor(string color)
+
+    public CubeSO GetCubeSO()
     {
-        this.color = color;
-    }
-    public string GetColor()
-    {
-        return color;
+        return cubeSO;
     }
 }
