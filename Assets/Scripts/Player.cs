@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     private Rigidbody playerRigidbody;
+    private Inventory inventory;
     
     [SerializeField]private float playerMovementSpeed;
     [SerializeField]private float playerRotateSpeed;
@@ -11,6 +12,11 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        inventory = new Inventory();
     }
     private void FixedUpdate()
     {
