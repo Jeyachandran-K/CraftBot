@@ -56,13 +56,13 @@ public class Player : MonoBehaviour
     {
         if(Physics.CapsuleCast(transform.position,transform.position+transform.up*playerheight,playerRadius,transform.forward,out RaycastHit raycastHit,maxRayDistance))
         {
-            if(raycastHit.collider.TryGetComponent(out BasicCube basicCube))
+            if(raycastHit.collider.TryGetComponent<IItem>(out IItem item))
             {
                 OnCubeHit?.Invoke(this, new OnCubeHitEventArgs
                 {
-                    cubeSO=basicCube.GetCubeSO(),
+                    cubeSO = item.GetCubeSO(),
                 });
-                basicCube.DestroySelf();
+                item.DestroySelf();
             }
         }
     }

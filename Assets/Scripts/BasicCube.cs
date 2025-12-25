@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BasicCube : MonoBehaviour
+public class BasicCube : MonoBehaviour,IItem
 {
     [SerializeField] private CubeSO cubeSO;
 

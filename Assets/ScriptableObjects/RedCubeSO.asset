@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CubeSO
   Prefab: {fileID: 3731161694821065353, guid: efd25fbe1766972478fb29cbcbfe0640, type: 3}
   color: Red
+  iconSprite: {fileID: 21300000, guid: 353e7ae41ad2fb04baac028ae4ffea36, type: 3}

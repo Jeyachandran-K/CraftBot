@@ -7,4 +7,7 @@ public class CubeSO : ScriptableObject
 {
     public Transform Prefab;
     public string color;
+    public Sprite iconSprite;
+    public bool isStackable;
+    public int amount;
 }

@@ -6,10 +6,6 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private CubeSO[] cubeSOArray;
 
-    private int redCubesCollected;
-    private int greenCubesCollected;
-
-
     private void Start()
     {
         Player.Instance.OnCubeHit += Player_OnCubeHit;
@@ -27,19 +23,6 @@ public class InventoryManager : MonoBehaviour
     }
     private void AddCubes(CubeSO c)
     {
-        switch (c.color)
-        {
-            case "Red":
-                redCubesCollected++;
-                Debug.Log("Red cubes collected :" + redCubesCollected);
-                break;
-            case "Green":
-                greenCubesCollected++;
-                Debug.Log("Green cubes collected :" + greenCubesCollected);
-                break ;
-            default:
-                break;
-
-        }
+        c.amount++;
     }
 }
