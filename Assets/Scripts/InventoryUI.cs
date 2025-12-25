@@ -26,7 +26,7 @@ public class InventoryUI : MonoBehaviour
         {
             UpdateItemSlotIcon(e);
         }
-        Debug.Log("inventory full");
+       
     }
     private void UpdateItemSlotIcon(Player.OnCubeHitEventArgs e)
     {
@@ -40,6 +40,7 @@ public class InventoryUI : MonoBehaviour
                 break;
             }
         }
+        Debug.Log("inventory full");
     }
     private bool DoesItemExist(Player.OnCubeHitEventArgs e)
     {
@@ -47,7 +48,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (e.cubeSO.iconSprite == slot.GetComponentInChildren<Image>().sprite)
             {
-                slot.GetAmountTextMesh().text = e.cubeSO.amount + "";
+                slot.GetAmountTextMesh().text = e.cubeSO.Prefab.GetComponent<BasicCube>().GetCubesCollected()+"";
                 return true;
             }
         }

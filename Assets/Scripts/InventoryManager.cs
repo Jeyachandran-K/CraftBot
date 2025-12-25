@@ -5,6 +5,7 @@ public class InventoryManager : MonoBehaviour
 {
 
     [SerializeField] private CubeSO[] cubeSOArray;
+    private int cubesCollected;
 
     private void Start()
     {
@@ -13,16 +14,16 @@ public class InventoryManager : MonoBehaviour
 
     private void Player_OnCubeHit(object sender, Player.OnCubeHitEventArgs e)
     {
-        foreach (CubeSO c in cubeSOArray)
+        foreach (CubeSO cubeSO in cubeSOArray)
         {
-            if(c == e.cubeSO)
+            if(cubeSO == e.cubeSO)
             {
-                AddCubes(c);
+                AddCubes(cubeSO,e);
             }
         }
     }
-    private void AddCubes(CubeSO c)
+    private void AddCubes(CubeSO cubeSO, Player.OnCubeHitEventArgs e)
     {
-        c.amount++;
+        cubeSO.Prefab.GetComponent<BasicCube>().IncreaseCubesCollected(e.cubeSO.Prefab.GetComponent<BasicCube>().GetAmount());
     }
 }
