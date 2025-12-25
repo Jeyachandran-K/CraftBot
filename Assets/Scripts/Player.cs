@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     
     [SerializeField]private float playerMovementSpeed;
     [SerializeField]private float playerRotateSpeed;
+    [SerializeField]private InventoryUI inventoryUI;
+
 
     private void Awake()
     {
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         inventory = new Inventory();
+        inventoryUI.SetInventory(inventory);  
     }
     private void FixedUpdate()
     {
